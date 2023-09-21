@@ -94,22 +94,11 @@ async def echo(ctx, *, msg='echoed.'):
   """just echos the message the user adds after the ?echo command."""
   await ctx.send(msg)
 
-@bot.command()
-async def cat(ctx):
-  await ctx.send('meow :3')
-  message = await ctx.send(file=discord.File('cat.jpg'))
-  await message.add_reaction('🐈‍⬛')
-  
-@bot.command()
-async def crazy(ctx):
-  await ctx.send('GO CRAZY AAAAAAAAAAA')
-  await ctx.send(file=discord.File('crazy.gif'))
-
 
 @bot.command()
 async def hello(ctx):
-  '''replys to the user who ran the command with a gif saying hello'''
-  message = await ctx.send(file=discord.File('hello.gif'))
+  '''replys to the user saying hello'''
+  message = await ctx.send('Hi!')
   await message.add_reaction('👋')
 
 
@@ -137,7 +126,7 @@ async def cmds(ctx):
   """
   if ctx.invoked_subcommand is None:
     await ctx.send('''Commands:
-add, div, roll, choose, repeat, joined, echo, cool, cat, crazy, hello''')
+add, div, roll, choose, repeat, joined, echo, cool, hello''')
 
 
 """all commands below are subcommands for the 'cmds' command, this will be expanded upon in the future when more commands are added."""
@@ -223,26 +212,9 @@ or:
 cool bot
 ''')
 
-@cmds.command(name='cat')
-async def _cat(ctx):
-  await ctx.send('''Cat:
-displays an image of a cat and meows.
-
-formatted as:
-cat''')
-
-@cmds.command(name='crazy')
-async def _crazy(ctx):
-  await ctx.send('''Crazy:
-displays a gif and goes FUCKING CRAZY.
-
-formatted as:
-crazy''')
-
-@cmds.command(name='hello')
-async def _hello(ctx):
+@cmds.command(name='hello')async def _hello(ctx):
   await ctx.send('''Hello:
-greets the chat with a gif.
+greets the chat.
 
 formatted as:
 hello''')
